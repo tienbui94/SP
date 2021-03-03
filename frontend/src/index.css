@@ -10,7 +10,44 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.container {
+h3 {
+    text-align: center;
+}
+
+.container-fluid {
+    padding: 20px;
+}
+
+.search-bar {
+    justify-content: center;
+    max-width: 400px;
+    display: flex;
+    padding: 25px;
+}
+
+.home-screen-ui {
+    justify-content: center;
+}
+
+.weather-card-img {
+    margin: 0 auto;
+    width: 150px !important;
+}
+
+.weather-widget {
     display: flex;
     justify-content: center;
+}
+
+.weather-card {
+    max-width: 400px;
+}
+
+.card {
+    box-shadow: 5px 5px 5px 5px lightgray;
+}
+
+.form-control {
+    max-width: 300px;
+    box-shadow: 1px 1px 1px 1px lightgray;
 }

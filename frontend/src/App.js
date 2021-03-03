@@ -6,7 +6,7 @@ function App() {
     return (
         <>
             <main>
-                <Container>
+                <Container fluid>
                     {routes.map((route, index) => (
                         <Route exact key={index} path={route.path} component={route.component} />
                     ))}

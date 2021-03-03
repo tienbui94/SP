@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
-import { Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import SearchBar from '../Components/SearchBar';
 import WeatherCard from '../Components/WeatherCard';
 import { fetchOpenWeatherData } from '../Reducers/homeReducer';
 import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../Components/Loader';
+import SunChart from '../Components/SunChart';
 const HomeScreen = () => {
     const WEATHER_APP_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-    console.log(WEATHER_APP_KEY, ' key');
+    const { data, loading } = useSelector((state) => state.home);
+    const { coord, weather, main, wind, clouds, dt, sys, timezone, name } = data;
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(
@@ -19,9 +22,30 @@ const HomeScreen = () => {
     }, [dispatch, WEATHER_APP_KEY]);
     return (
         <>
-            <Row>
-                <SearchBar />
-                <WeatherCard />
+            <Row className='home-screen-ui'>
+                <Col md={12} xs={6} className='search-bar mx-3 my-3'>
+                    <SearchBar />
+                </Col>
+                {loading ? (
+                    <Loader />
+                ) : (
+                    <Col md={12} xs={6} className='weather-widget mx-3 my-3'>
+                        <WeatherCard
+                            coord={coord}
+                            main={main}
+                            wind={wind}
+                            clouds={clouds}
+                            dt={dt}
+                            name={name}
+                            weather={weather}
+                            sys={sys}
+                            timezone={timezone}
+                        />
+                    </Col>
+                )}
+                <Col md={12} xs={6} className='weather-chart mx-3 my-3'>
+                    <SunChart />
+                </Col>
             </Row>
         </>
     );
