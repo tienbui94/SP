@@ -26,7 +26,7 @@ const SearchBar = () => {
                 onKeyDown={onKeyDown}
             />
             <Button onClick={onSearch} variant='light' className='btn btn-primary'>
-                Search
+                Get Weather
             </Button>
         </>
     );
