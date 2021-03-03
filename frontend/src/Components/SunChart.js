@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-
+import { Image } from 'react-bootstrap';
+import moment from 'moment';
 const SunChart = () => {
+    const celsius = () => <span>&#8451;</span>;
     const initData = {
         labels: [],
         datasets: [
@@ -16,7 +18,7 @@ const SunChart = () => {
             }
         ]
     };
-    const [data, setData] = useState(initData);
+    const [chartData] = useState(initData);
     const options = {
         title: {
             display: true,
@@ -42,13 +44,10 @@ const SunChart = () => {
         }
     };
 
-    const { hourly } = useSelector((state) => state.home.forecast);
-    console.log(hourly, 'hourly');
-    // const [data, setData] = useState(initData);
-
+    const { hourly, current } = useSelector((state) => state.home.forecast);
+    console.log(current, 'current');
     useEffect(() => {
         if (hourly) {
-            let changeData = { ...data };
             const x = 60;
             let times = [];
             let tt = 0;
@@ -60,22 +59,37 @@ const SunChart = () => {
 
                 tt = tt + x;
             }
-
-            changeData.labels = times;
             let set = [];
-
             hourly.forEach((hour, i) => {
                 if (i < 24) {
                     set.push(Math.round(hour.temp));
                 }
             });
-            changeData.datasets[0].data = set;
 
-            setData(changeData);
+            chartData.labels = times;
+            chartData.datasets[0].data = set;
         }
-    }, [hourly, data]);
+    }, [hourly, chartData]);
 
-    return <Line data={data} options={options} />;
+    return (
+        <>
+            <div className='current-weather'>
+                <div>
+                    {Math.round(current.temp)} {celsius()}
+                </div>
+                <Image
+                    style={{ width: 120, height: 120 }}
+                    src={`http://openweathermap.org/img/wn/${current?.weather[0].icon}@2x.png`}
+                />
+            </div>
+            <div className='sun-time'>
+                <div className='sunrise-time mr-4'>{moment.unix(current.sunrise).format('LT')}</div>
+                <div className='sunset-time ml-4'>{moment.unix(current.sunset).format('LT')}</div>
+            </div>
+
+            <Line data={chartData} options={options} />
+        </>
+    );
 };
 
 export default SunChart;

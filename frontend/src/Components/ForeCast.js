@@ -18,7 +18,7 @@ const ForeCast = ({ coord, appid }) => {
                 dailyData.map((data, index) => (
                     <Col key={index} xs={3} md={2} className='my-2 forecast-item'>
                         <Card border='light'>
-                            <Card.Header>
+                            <Card.Header className='text-center font-weight-bolder'>
                                 <span>{moment.unix(data?.dt).utc().format('dddd')}</span>
                             </Card.Header>
                             <Card.Img
@@ -27,8 +27,8 @@ const ForeCast = ({ coord, appid }) => {
                                 }@2x.png`}
                             />
                             <Card.Body>
-                                <h4>{data?.weather && data?.weather[0].main}</h4>
-                                <p>
+                                <h4>{data?.weather && data?.weather[0].description}</h4>
+                                <p className='font-weight-bolder text-center'>
                                     {Math.round(data?.temp?.min)}
                                     {celsius()} - {Math.round(data?.temp?.max)}
                                     {celsius()}
