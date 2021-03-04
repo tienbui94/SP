@@ -20,7 +20,8 @@ const ForeCast = ({ coord, appid }) => {
     return (
         <>
             <div className='container forecast-list-item'>
-                {dailyData.length > 0 &&
+                {Array.isArray(dailyData) &&
+                    dailyData.length > 0 &&
                     dailyData.map((data, index) => (
                         <Col key={index} xs={6} md={3} className='my-2 forecast-item'>
                             <Card border='light'>

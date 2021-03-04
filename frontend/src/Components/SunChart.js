@@ -13,9 +13,13 @@ const SunChart = () => {
                 data: [65, 59, 80, 81, 56],
                 lineTension: 0.5,
                 borderWidth: 2,
-                fill: false,
+                fill: true,
                 backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgba(255, 99, 132, 0.2)'
+                borderColor: 'rgba(255, 99, 132, 0.2)',
+                pointBackgroundColor: 'rgb(255, 99, 132)',
+                pointBorderColor: 'rgb(255, 99, 132)',
+                pointHoverBackgroundColor: 'rgb(255, 99, 132)',
+                pointHoverBorderColor: 'rgb(255, 99, 132)'
             }
         ]
     };
@@ -24,6 +28,11 @@ const SunChart = () => {
         title: {
             display: true,
             fontSize: 20
+        },
+        elements: {
+            point: {
+                radius: 1
+            }
         },
         maintainAspectRatio: true,
         legend: {
@@ -85,11 +94,12 @@ const SunChart = () => {
                     />
                 </div>
                 <div className='sun-time'>
-                    <div className='sunrise-time mr-4'>
+                    <div className='sunrise-time mr-2'>
+                        <strong>Sunrise: </strong>
                         {moment.unix(current.sunrise).format('LT')}
                     </div>
-                    <div className='sunset-time ml-4'>
-                        {moment.unix(current.sunset).format('LT')}
+                    <div className='sunset-time ml-2'>
+                        <strong>Sunset: </strong> {moment.unix(current.sunset).format('LT')}
                     </div>
                 </div>
 

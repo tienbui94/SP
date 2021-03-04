@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import SearchBar from '../Components/SearchBar';
 import WeatherCard from '../Components/WeatherCard';
@@ -10,7 +10,9 @@ import ForeCast from '../Components/ForeCast';
 const HomeScreen = () => {
     const WEATHER_APP_KEY = process.env.REACT_APP_WEATHER_API_KEY;
     const { data, loading } = useSelector((state) => state.home);
+    const [position, setPosition] = useState('');
     const { coord, weather, main, wind, clouds, dt, sys, timezone, name } = data;
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(

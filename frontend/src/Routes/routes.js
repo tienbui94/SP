@@ -1,9 +1,10 @@
-import HomeScreen from '../Screens/HomeScreen';
+import { lazy } from 'react';
 
+const HomeScreenLazy = lazy(() => import('../Screens/HomeScreen'));
 const routes = [
     {
         path: '/',
-        component: HomeScreen
+        component: HomeScreenLazy
     }
 ];
 
