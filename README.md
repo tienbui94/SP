@@ -1,22 +1,22 @@
-# ![React + Redux Weather App Example]
+# [React + Redux Weather App Example]
 
-[![Front End]]
+[[Front End]]
 
 ### Hi, my nam is Tien Quang Bui. I am doing this project with help of OpenWeather API (https://openweathermap.org/api)
 
+### Technology:
 
-> ### Technology : REACTJS LIBRARY / JAVASCRIPT / HTML5/ CSS3 / REDUX / REDUX TOOLKIT / OTHER JS LIBRARY. 
+REACTJS LIBRARY / JAVASCRIPT / HTML5/ CSS3 / REDUX / REDUX TOOLKIT / OTHER JS LIBRARY.
 
-
-### Set up Guide: 
+### Set up Guide:
 
 Locate to frontend folder.
 
 # Available Scripts
 
-### `npm install` 
+### `npm install`
 
-installing node environment 
+installing node environment
 
 ### `npm start`
 
