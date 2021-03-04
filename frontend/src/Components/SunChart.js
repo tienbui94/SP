@@ -86,7 +86,7 @@ const SunChart = () => {
             <div className='container text-center sun-rise-charts'>
                 <div className='current-weather'>
                     <h3>
-                        {mathRound(current.temp)} {celsius()}
+                        {mathRound(current?.temp)} {celsius()}
                     </h3>
                     <Image
                         className='chart-img'
@@ -96,10 +96,10 @@ const SunChart = () => {
                 <div className='sun-time'>
                     <div className='sunrise-time mr-2'>
                         <strong>Sunrise: </strong>
-                        {moment.unix(current.sunrise).format('LT')}
+                        {moment.unix(current?.sunrise).format('LT')}
                     </div>
                     <div className='sunset-time ml-2'>
-                        <strong>Sunset: </strong> {moment.unix(current.sunset).format('LT')}
+                        <strong>Sunset: </strong> {moment.unix(current?.sunset).format('LT')}
                     </div>
                 </div>
 

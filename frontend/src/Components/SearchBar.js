@@ -21,7 +21,7 @@ const SearchBar = () => {
                 value={city}
                 onChange={(event) => setCity(event.target.value)}
                 type='text'
-                placeholder='Select Location'
+                placeholder='Enter City/Country...'
                 className='mr-sm-2 search-bar'
                 onKeyDown={onKeyDown}
             />

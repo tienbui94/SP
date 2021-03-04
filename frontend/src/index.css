@@ -114,3 +114,11 @@ h3 > span {
     display: flex;
     flex-flow: row wrap;
 }
+
+p {
+    text-align: center;
+}
+
+.get-weather-btn {
+    box-shadow: 1px 1px 2px 2px lightgray;
+}

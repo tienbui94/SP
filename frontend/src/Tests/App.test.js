@@ -3,7 +3,8 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import chai from 'chai';
 
-import store from '../Redux/store';
+//import store redux
+// import store from '../Redux/store';
 
 //import function
 import mathRound from '../Utils/mathRound';
@@ -11,14 +12,12 @@ import objectToParams from '../Utils/objectToParams';
 import { fetchOpenWeatherData, fetchOWForeCast } from '../Reducers/homeReducer';
 
 //import component, screen
-// import HomeScreen from '../Screens/HomeScreen';
 import WeatherCard from '../Components/WeatherCard';
 import SearchBar from '../Components/SearchBar';
 import ForeCast from '../Components/ForeCast';
 import Loader from '../Components/Loader';
 import SunChart from '../Components/SunChart';
 import Celsius from '../Components/Celsius';
-// import App from '../App';
 
 //mock provider
 import MockProvider from './Utils/mockProvider';
@@ -38,9 +37,9 @@ const mockDataAPI = {
 };
 
 // get state data from store
-const state = store.getState();
+// const state = store.getState();
 
-console.log(state, 'store');
+// console.log(state, 'store');
 
 //implement chai expect for unit test
 const chaiExpect = chai.expect;
@@ -109,19 +108,16 @@ describe('WeatherCard Component', () => {
 describe('Celsius Component', () => {
     const wrapper = shallow(<Celsius />);
 
+    const mountWrapper = mount(<Celsius />);
+
     it('check attributes of component', () => {
-        chaiExpect(wrapper.find('.celsius').hasClass('id')).to.equal(false);
         chaiExpect(wrapper.find('.celsius')).to.have.lengthOf(1);
+        chaiExpect(mountWrapper.find('.celsius').props().id).to.equal('temperature-celsius');
+        chaiExpect(mountWrapper.find('.celsius').props().children).to.be.lengthOf(1);
     });
 });
 
 describe('ForeCast Component', () => {
-    const wrapper = shallow(
-        <MockProvider>
-            <ForeCast coord='example coord' appid='example appid' />
-        </MockProvider>
-    );
-
     const mountWrapper = mount(
         <MockProvider>
             <ForeCast coord='example coord' appid='example appid' />
@@ -129,7 +125,8 @@ describe('ForeCast Component', () => {
     );
 
     it('check attributes of component', () => {
-        chaiExpect(wrapper.find('.forecast-list-item')).to.have.lengthOf(0);
+        chaiExpect(mountWrapper.find('.forecast-list-item')).to.have.lengthOf(1);
+        chaiExpect(mountWrapper.find('.forecast-list-item').props().children).to.equal(false);
     });
 
     it('check props of component', () => {
@@ -139,21 +136,23 @@ describe('ForeCast Component', () => {
 });
 
 describe('SearchBar Component', () => {
-    const wrapper = shallow(
-        <MockProvider>
-            <SearchBar />
-        </MockProvider>
-    );
-
     const mountWrapper = mount(
         <MockProvider>
             <SearchBar />
         </MockProvider>
     );
 
-    it('check attributes of component', () => {
-        console.log(mountWrapper.name());
-        console.log(wrapper.name());
+    it('test button element in searchBar component', () => {
+        chaiExpect(mountWrapper.find('button').props()).to.haveOwnProperty('onClick');
+        chaiExpect(mountWrapper.find('button').props().children).to.equal('Get Weather');
+        chaiExpect(mountWrapper.find('button').props().type).to.equal('button');
+    });
+
+    it('test input element in searchBar component', () => {
+        chaiExpect(mountWrapper.find('input').props()).to.haveOwnProperty('type');
+        chaiExpect(mountWrapper.find('input').props()).to.haveOwnProperty('onChange');
+        chaiExpect(mountWrapper.find('input').props()).to.haveOwnProperty('onKeyDown');
+        chaiExpect(mountWrapper.find('input').props().type).to.equal('text');
     });
 });
 
@@ -164,8 +163,8 @@ describe('SunChart Component', () => {
         </MockProvider>
     );
 
-    it('check attributes of component', () => {
-        chaiExpect(wrapper.find('.sun-rise-charts'));
+    it('check children of component', () => {
+        expect(wrapper.props().children).toBeTruthy();
     });
 });
 
