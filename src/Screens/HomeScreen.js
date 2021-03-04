@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Container, Col } from 'react-bootstrap';
 import SearchBar from '../Components/SearchBar';
 import WeatherCard from '../Components/WeatherCard';
 import { fetchOpenWeatherData } from '../Reducers/homeReducer';
@@ -24,7 +24,7 @@ const HomeScreen = () => {
     }, [dispatch, WEATHER_APP_KEY]);
     return (
         <>
-            <Row className='home-screen-ui'>
+            <Container className='home-screen-ui'>
                 <h2>Weather application</h2>
                 <Col md={12} xs={12} className='search-bar mx-3 my-3'>
                     <SearchBar />
@@ -54,7 +54,7 @@ const HomeScreen = () => {
                         </Col>
                     </>
                 )}
-            </Row>
+            </Container>
         </>
     );
 };
