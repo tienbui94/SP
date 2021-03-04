@@ -22,10 +22,10 @@ const SearchBar = () => {
                 onChange={(event) => setCity(event.target.value)}
                 type='text'
                 placeholder='Select Location'
-                className='mr-sm-2'
+                className='mr-sm-2 search-bar'
                 onKeyDown={onKeyDown}
             />
-            <Button onClick={onSearch} variant='light' className='btn btn-primary'>
+            <Button onClick={onSearch} variant='light' className='get-weather-btn btn btn-primary'>
                 Get Weather
             </Button>
         </>

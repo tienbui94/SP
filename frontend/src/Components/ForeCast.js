@@ -19,31 +19,33 @@ const ForeCast = ({ coord, appid }) => {
 
     return (
         <>
-            {dailyData.length > 0 &&
-                dailyData.map((data, index) => (
-                    <Col key={index} xs={6} md={3} className='my-2 forecast-item'>
-                        <Card border='light'>
-                            <Card.Header className='text-center font-weight-bolder'>
-                                <span>{moment.unix(data?.dt).utc().format('dddd')}</span>
-                            </Card.Header>
-                            <Card.Img
-                                src={`http://openweathermap.org/img/wn/${
-                                    data?.weather.length > 0 && data?.weather[0].icon
-                                }@2x.png`}
-                            />
-                            <Card.Body>
-                                <div className='title-forecast-item'>
-                                    <h4>{data?.weather && data?.weather[0].description}</h4>
-                                </div>
-                                <h3 className='font-weight-bolder text-center'>
-                                    {mathRound(data?.temp?.min)}
-                                    {celsius()} - {mathRound(data?.temp?.max)}
-                                    {celsius()}
-                                </h3>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
+            <div className='container forecast-list-item'>
+                {dailyData.length > 0 &&
+                    dailyData.map((data, index) => (
+                        <Col key={index} xs={6} md={3} className='my-2 forecast-item'>
+                            <Card border='light'>
+                                <Card.Header className='text-center font-weight-bolder'>
+                                    <span>{moment.unix(data?.dt).utc().format('dddd')}</span>
+                                </Card.Header>
+                                <Card.Img
+                                    src={`http://openweathermap.org/img/wn/${
+                                        data?.weather.length > 0 && data?.weather[0].icon
+                                    }@2x.png`}
+                                />
+                                <Card.Body>
+                                    <div className='title-forecast-item'>
+                                        <h4>{data?.weather && data?.weather[0].description}</h4>
+                                    </div>
+                                    <h3 className='font-weight-bolder text-center'>
+                                        {mathRound(data?.temp?.min)}
+                                        {celsius()} - {mathRound(data?.temp?.max)}
+                                        {celsius()}
+                                    </h3>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+            </div>
         </>
     );
 };

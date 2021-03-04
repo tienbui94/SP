@@ -96,6 +96,7 @@ h3 > span {
     font-size: 30px;
     font-weight: bolder;
 }
+
 .sun-time {
     display: flex;
     justify-content: flex-end;
@@ -103,7 +104,13 @@ h3 > span {
     right: 50px;
     top: 70px;
 }
+
 .chart-img {
     width: 50px;
     height: 50px;
+}
+
+.forecast-list-item {
+    display: flex;
+    flex-flow: row wrap;
 }

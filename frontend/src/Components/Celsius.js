@@ -1,7 +1,11 @@
 import React from 'react';
 
 const Celsius = () => {
-    return <span>&#8451;</span>;
+    return (
+        <span id='foo' className='celsius'>
+            &#8451;
+        </span>
+    );
 };
 
 export default Celsius;

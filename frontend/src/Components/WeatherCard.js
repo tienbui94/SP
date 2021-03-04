@@ -29,10 +29,10 @@ const WeatherCard = ({ ...props }) => {
                         {celsius()}
                     </h3>
                     <p className='text-center'>
-                        <i class='fas fa-water'></i> {main?.humidity} %
+                        <i className='fas fa-water'></i> {main?.humidity} %
                     </p>
                     <p className='text-center'>
-                        <i class='fas fa-wind'></i> {wind?.speed} km/h
+                        <i className='fas fa-wind'></i> {wind?.speed} km/h
                     </p>
                 </Card.Title>
             </Card.Body>

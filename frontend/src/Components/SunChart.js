@@ -74,21 +74,27 @@ const SunChart = () => {
 
     return (
         <>
-            <div className='current-weather'>
-                <h3>
-                    {mathRound(current.temp)} {celsius()}
-                </h3>
-                <Image
-                    className='chart-img'
-                    src={`http://openweathermap.org/img/wn/${current?.weather[0].icon}@2x.png`}
-                />
-            </div>
-            <div className='sun-time'>
-                <div className='sunrise-time mr-4'>{moment.unix(current.sunrise).format('LT')}</div>
-                <div className='sunset-time ml-4'>{moment.unix(current.sunset).format('LT')}</div>
-            </div>
+            <div className='container text-center sun-rise-charts'>
+                <div className='current-weather'>
+                    <h3>
+                        {mathRound(current.temp)} {celsius()}
+                    </h3>
+                    <Image
+                        className='chart-img'
+                        src={`http://openweathermap.org/img/wn/${current?.weather[0].icon}@2x.png`}
+                    />
+                </div>
+                <div className='sun-time'>
+                    <div className='sunrise-time mr-4'>
+                        {moment.unix(current.sunrise).format('LT')}
+                    </div>
+                    <div className='sunset-time ml-4'>
+                        {moment.unix(current.sunset).format('LT')}
+                    </div>
+                </div>
 
-            <Line data={chartData} options={options} />
+                <Line data={chartData} options={options} />
+            </div>
         </>
     );
 };
