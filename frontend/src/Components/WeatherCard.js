@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import moment from 'moment';
+import celsius from './Celsius';
+import mathRound from '../Utils/mathRound';
 const WeatherCard = ({ ...props }) => {
-    const celsius = () => <span>&#8451;</span>;
     const { main, wind, dt, weather = [], name } = props;
     const date = moment.unix(dt).utc().format('dddd, MMMM do, YYYY');
     return (
@@ -10,8 +11,8 @@ const WeatherCard = ({ ...props }) => {
             <Card.Body>
                 <Card.Title>
                     <h3>{weather.length > 0 && weather[0].main}</h3>
-                    <h3>
-                        {main?.temp}
+                    <h3 className='font-weight-bolder'>
+                        {mathRound(main?.temp)}
                         {celsius()}
                     </h3>
                     <Card.Img
@@ -22,16 +23,17 @@ const WeatherCard = ({ ...props }) => {
                     <h2> {name}</h2>
                     <p>{date}</p>
 
-                    <p>
-                        Min: {`${main?.temp_min}`}
+                    <h3 className='text-center font-weight-bolder'>
+                        {`${mathRound(main?.temp_min)}`}
+                        {celsius()} - {mathRound(main?.temp_max)}
                         {celsius()}
+                    </h3>
+                    <p className='text-center'>
+                        <i class='fas fa-water'></i> {main?.humidity} %
                     </p>
-                    <p>
-                        Max: {main?.temp_max}
-                        {celsius()}
+                    <p className='text-center'>
+                        <i class='fas fa-wind'></i> {wind?.speed} km/h
                     </p>
-                    <p>Humidity: {main?.humidity}%</p>
-                    <p>Wind: {wind?.speed}mph</p>
                 </Card.Title>
             </Card.Body>
         </Card>

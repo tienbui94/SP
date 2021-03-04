@@ -47,14 +47,14 @@ const weatherSlice = createSlice({
             state.error = action.payload;
         },
         [fetchOWForeCast.pending]: (state) => {
-            state.loading = true;
+            state.foreCastLoading = true;
         },
         [fetchOWForeCast.fulfilled]: (state, action) => {
-            state.loading = false;
+            state.foreCastLoading = false;
             state.forecast = action.payload;
         },
         [fetchOWForeCast.rejected]: (state, action) => {
-            state.loading = false;
+            state.foreCastLoading = false;
             state.error = action.payload;
         }
     }

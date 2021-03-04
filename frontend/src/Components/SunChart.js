@@ -3,8 +3,9 @@ import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { Image } from 'react-bootstrap';
 import moment from 'moment';
+import celsius from './Celsius';
+import mathRound from '../Utils/mathRound';
 const SunChart = () => {
-    const celsius = () => <span>&#8451;</span>;
     const initData = {
         labels: [],
         datasets: [
@@ -62,7 +63,7 @@ const SunChart = () => {
             let set = [];
             hourly.forEach((hour, i) => {
                 if (i < 24) {
-                    set.push(Math.round(hour.temp));
+                    set.push(mathRound(hour.temp));
                 }
             });
 
@@ -74,11 +75,11 @@ const SunChart = () => {
     return (
         <>
             <div className='current-weather'>
-                <div>
-                    {Math.round(current.temp)} {celsius()}
-                </div>
+                <h3>
+                    {mathRound(current.temp)} {celsius()}
+                </h3>
                 <Image
-                    style={{ width: 120, height: 120 }}
+                    className='chart-img'
                     src={`http://openweathermap.org/img/wn/${current?.weather[0].icon}@2x.png`}
                 />
             </div>

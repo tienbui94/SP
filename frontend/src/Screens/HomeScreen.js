@@ -25,33 +25,35 @@ const HomeScreen = () => {
         <>
             <Row className='home-screen-ui'>
                 <h2>Weather application</h2>
-                <Col md={12} xs={6} className='search-bar mx-3 my-3'>
+                <Col md={12} xs={12} className='search-bar mx-3 my-3'>
                     <SearchBar />
                 </Col>
                 {loading ? (
                     <Loader />
                 ) : (
-                    <Col md={12} xs={6} className='weather-widget mx-3 my-3'>
-                        <WeatherCard
-                            coord={coord}
-                            main={main}
-                            wind={wind}
-                            clouds={clouds}
-                            dt={dt}
-                            name={name}
-                            weather={weather}
-                            sys={sys}
-                            timezone={timezone}
-                        />
-                    </Col>
+                    <>
+                        <Col md={12} xs={12} className='weather-widget mx-3 my-3'>
+                            <WeatherCard
+                                coord={coord}
+                                main={main}
+                                wind={wind}
+                                clouds={clouds}
+                                dt={dt}
+                                name={name}
+                                weather={weather}
+                                sys={sys}
+                                timezone={timezone}
+                            />
+                        </Col>
+
+                        <ForeCast coord={coord} appid={WEATHER_APP_KEY} />
+
+                        <Col md={12} xs={12} className='weather-chart mx-3 my-3'>
+                            <SunChart />
+                        </Col>
+                    </>
                 )}
             </Row>
-            <Row>
-                <ForeCast coord={coord} appid={WEATHER_APP_KEY} />
-            </Row>
-            <Col md={12} xs={6} className='weather-chart mx-3 my-3'>
-                <SunChart />
-            </Col>
         </>
     );
 };
