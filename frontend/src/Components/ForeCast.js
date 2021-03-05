@@ -33,9 +33,12 @@ const ForeCast = ({ coord, appid }) => {
                                         data?.weather.length > 0 && data?.weather[0].icon
                                     }@2x.png`}
                                 />
+                                <p className='font-weight-bolder'>
+                                    {moment.unix(data?.dt).utc().format('MM-DD-YYYY')}
+                                </p>
                                 <Card.Body>
                                     <div className='title-forecast-item'>
-                                        <h4>{data?.weather && data?.weather[0].description}</h4>
+                                        <h4>{data?.weather && data?.weather[0].main}</h4>
                                     </div>
                                     <h3 className='font-weight-bolder text-center'>
                                         {mathRound(data?.temp?.min)}

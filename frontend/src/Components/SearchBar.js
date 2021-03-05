@@ -25,8 +25,11 @@ const SearchBar = () => {
                 className='mr-sm-2 search-bar'
                 onKeyDown={onKeyDown}
             />
-            <Button onClick={onSearch} variant='light' className='get-weather-btn btn btn-primary'>
-                Get Weather
+            <Button
+                onClick={onSearch}
+                variant='light'
+                className='get-weather-btn btn btn-primary ml-2'>
+                Go
             </Button>
         </>
     );

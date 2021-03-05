@@ -32,7 +32,7 @@ const WeatherCard = ({ ...props }) => {
                         <i className='fas fa-water'></i> {main?.humidity} %
                     </p>
                     <p>
-                        <i className='fas fa-wind'></i> {wind?.speed} km/h
+                        <i className='fas fa-wind'></i> {wind?.speed} m/s
                     </p>
                 </Card.Title>
             </Card.Body>

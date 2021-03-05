@@ -1,109 +1,218 @@
-import { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import { useSelector } from 'react-redux';
-import { Image } from 'react-bootstrap';
-import moment from 'moment';
-import celsius from './Celsius';
-import mathRound from '../Utils/mathRound';
+import CanvasJSReact from '../assets/canvasjs.react';
+import { useState } from 'react';
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const SunChart = () => {
-    const initData = {
-        labels: [],
-        datasets: [
+    const [ref, setRef] = useState('');
+    const listColors = {
+        seaLevel: 'rgb(102, 178, 255)',
+        sunLevel: 'rgb(255, 100, 0)',
+        white: 'rgb(255,255,255)'
+    };
+    console.log(ref, 'ref');
+
+    const options = {
+        animationEnabled: true,
+        exportEnabled: false,
+        theme: 'light1', // "light1", "dark1", "dark2"
+        title: {
+            text: 'Tide & Sunrise & Sunset'
+        },
+        axisY: {
+            gridThickness: 0,
+            tickLength: 0,
+            lineThickness: 0,
+            labelFormatter: () => {
+                return '';
+            }
+        },
+        axisX: {
+            title: '',
+            interval: 12
+        },
+        data: [
             {
-                data: [65, 59, 80, 81, 56],
-                lineTension: 0.5,
-                borderWidth: 2,
-                fill: true,
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgba(255, 99, 132, 0.2)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
-                pointBorderColor: 'rgb(255, 99, 132)',
-                pointHoverBackgroundColor: 'rgb(255, 99, 132)',
-                pointHoverBorderColor: 'rgb(255, 99, 132)'
+                type: 'splineArea',
+                markerType: 'none',
+                toolTipContent: 'time {x}',
+                color: listColors.white,
+                dataPoints: [
+                    {
+                        x: 1,
+                        y: 0,
+                        color: listColors.sunLevel,
+                        lineColor: listColors.sunLevel,
+                        markerImageUrl: 'http://i.imgur.com/TUmQf5n.png',
+                        backgroundColor: listColors.sunLevel,
+                        fillColor: listColors.sunLevel
+                    },
+                    {
+                        x: 10,
+                        y: 15,
+                        color: listColors.sunLevel,
+                        lineColor: listColors.sunLevel,
+                        markerImageUrl: 'http://i.imgur.com/TUmQf5n.png',
+                        backgroundColor: listColors.sunLevel,
+                        fillColor: listColors.sunLevel
+                    },
+                    {
+                        x: 20,
+                        y: 25,
+                        color: listColors.sunLevel,
+                        lineColor: listColors.sunLevel,
+                        markerImageUrl: 'http://i.imgur.com/TUmQf5n.png',
+                        backgroundColor: listColors.sunLevel,
+                        fillColor: listColors.sunLevel
+                    },
+                    {
+                        x: 30,
+                        y: 35,
+                        color: listColors.sunLevel,
+                        lineColor: listColors.sunLevel,
+                        markerImageUrl: 'http://i.imgur.com/TUmQf5n.png',
+                        backgroundColor: listColors.sunLevel,
+                        fillColor: listColors.sunLevel
+                    },
+                    {
+                        x: 40,
+                        y: 40,
+                        color: listColors.sunLevel,
+                        lineColor: listColors.sunLevel,
+                        markerImageUrl: 'http://i.imgur.com/TUmQf5n.png',
+                        backgroundColor: listColors.sunLevel,
+                        fillColor: listColors.sunLevel
+                    },
+                    {
+                        x: 50,
+                        y: 40,
+                        color: listColors.sunLevel,
+                        lineColor: listColors.sunLevel,
+                        markerImageUrl: 'http://i.imgur.com/TUmQf5n.png',
+                        backgroundColor: listColors.sunLevel,
+                        fillColor: listColors.sunLevel
+                    },
+                    {
+                        x: 60,
+                        y: 35,
+                        color: listColors.sunLevel,
+                        lineColor: listColors.sunLevel,
+                        markerImageUrl: 'http://i.imgur.com/TUmQf5n.png',
+                        backgroundColor: listColors.sunLevel,
+                        fillColor: listColors.sunLevel
+                    },
+                    {
+                        x: 70,
+                        y: 25,
+                        color: listColors.sunLevel,
+                        lineColor: listColors.sunLevel,
+                        markerImageUrl: 'http://i.imgur.com/TUmQf5n.png',
+                        backgroundColor: listColors.sunLevel,
+                        fillColor: listColors.sunLevel
+                    },
+                    {
+                        x: 80,
+                        y: 10,
+                        color: listColors.sunLevel,
+                        lineColor: listColors.sunLevel,
+                        markerImageUrl: 'http://i.imgur.com/TUmQf5n.png',
+                        backgroundColor: listColors.sunLevel,
+                        fillColor: listColors.sunLevel
+                    },
+                    {
+                        x: 90,
+                        y: 0,
+                        color: listColors.sunLevel,
+                        lineColor: listColors.sunLevel,
+                        markerImageUrl: 'http://i.imgur.com/TUmQf5n.png',
+                        backgroundColor: listColors.sunLevel,
+                        fillColor: listColors.sunLevel
+                    }
+                ]
+            },
+            {
+                type: 'splineArea',
+                markerType: 'none',
+                toolTipContent: 'Tide {x}',
+                color: listColors.seaLevel,
+                dataPoints: [
+                    {
+                        x: 1,
+                        y: 15,
+                        lineColor: listColors.seaLevel,
+                        backgroundColor: listColors.seaLevel,
+                        fillColor: listColors.seaLevel
+                    },
+                    {
+                        x: 10,
+                        y: 15,
+                        lineColor: listColors.seaLevel,
+                        backgroundColor: listColors.seaLevel,
+                        fillColor: listColors.seaLevel
+                    },
+                    {
+                        x: 20,
+                        y: 16,
+                        lineColor: listColors.seaLevel,
+                        backgroundColor: listColors.seaLevel,
+                        fillColor: listColors.seaLevel
+                    },
+                    {
+                        x: 30,
+                        y: 17,
+                        lineColor: listColors.seaLevel,
+                        backgroundColor: listColors.seaLevel,
+                        fillColor: listColors.seaLevel
+                    },
+                    {
+                        x: 40,
+                        y: 18,
+                        lineColor: listColors.seaLevel,
+                        backgroundColor: listColors.seaLevel,
+                        fillColor: listColors.seaLevel
+                    },
+                    {
+                        x: 50,
+                        y: 19,
+                        lineColor: listColors.seaLevel,
+                        backgroundColor: listColors.seaLevel,
+                        fillColor: listColors.seaLevel
+                    },
+                    {
+                        x: 60,
+                        y: 16,
+                        lineColor: listColors.seaLevel,
+                        backgroundColor: listColors.seaLevel,
+                        fillColor: listColors.seaLevel
+                    },
+                    {
+                        x: 70,
+                        y: 15,
+                        lineColor: listColors.seaLevel,
+                        backgroundColor: listColors.seaLevel,
+                        fillColor: listColors.seaLevel
+                    },
+                    {
+                        x: 80,
+                        y: 14,
+                        lineColor: listColors.seaLevel,
+                        backgroundColor: listColors.seaLevel,
+                        fillColor: listColors.seaLevel
+                    },
+                    {
+                        x: 90,
+                        y: 15,
+                        lineColor: listColors.seaLevel,
+                        backgroundColor: listColors.seaLevel,
+                        fillColor: listColors.seaLevel
+                    }
+                ]
             }
         ]
     };
-    const [chartData] = useState(initData);
-    const options = {
-        title: {
-            display: true,
-            fontSize: 20
-        },
-        elements: {
-            point: {
-                radius: 1
-            }
-        },
-        maintainAspectRatio: true,
-        legend: {
-            display: false
-        },
-        scales: {
-            yAxes: [
-                {
-                    display: false,
-                    ticks: {
-                        suggestedMin: 20,
-                        suggestedMax: 45
-                    }
-                }
-            ],
-            gridLines: {
-                color: 'blue'
-            }
-        }
-    };
-
-    const { hourly, current } = useSelector((state) => state.home.forecast);
-    console.log(current, 'current');
-    useEffect(() => {
-        if (hourly) {
-            const x = 60;
-            let times = [];
-            let tt = 0;
-            const app = ['AM', 'PM'];
-
-            for (let i = 0; tt < 24 * 60; i++) {
-                const hh = Math.floor(tt / 60);
-                times[i] = (hh % 12) + app[Math.floor(hh / 12)];
-
-                tt = tt + x;
-            }
-            let set = [];
-            hourly.forEach((hour, i) => {
-                if (i < 24) {
-                    set.push(mathRound(hour.temp));
-                }
-            });
-
-            chartData.labels = times;
-            chartData.datasets[0].data = set;
-        }
-    }, [hourly, chartData]);
 
     return (
         <>
-            <div className='container text-center sun-rise-charts'>
-                <div className='current-weather'>
-                    <h3>
-                        {mathRound(current?.temp)} {celsius()}
-                    </h3>
-                    <Image
-                        className='chart-img'
-                        src={`http://openweathermap.org/img/wn/${current?.weather[0].icon}@2x.png`}
-                    />
-                </div>
-                <div className='sun-time'>
-                    <div className='sunrise-time mr-2'>
-                        <strong>Sunrise: </strong>
-                        {moment.unix(current?.sunrise).format('LT')}
-                    </div>
-                    <div className='sunset-time ml-2'>
-                        <strong>Sunset: </strong> {moment.unix(current?.sunset).format('LT')}
-                    </div>
-                </div>
-
-                <Line data={chartData} options={options} />
+            <div className='container text-center sun-rise-charts mt-5'>
+                <CanvasJSChart options={options} onRef={(ref) => setRef(ref)} />
             </div>
         </>
     );

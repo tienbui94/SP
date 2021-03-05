@@ -17,10 +17,6 @@ h2 {
     text-transform: capitalize;
 }
 
-h4 {
-    min-height: 56px;
-}
-
 h2 {
     text-transform: uppercase !important;
     font-family: fantasy;
@@ -33,7 +29,7 @@ h4 > span {
 }
 
 h3 {
-    font-size: 14px;
+    font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -64,9 +60,7 @@ h3 > span {
 }
 
 .weather-card {
-    max-width: 400px;
     max-height: 500px !important;
-    min-width: 400px;
 }
 
 .card {
@@ -93,7 +87,7 @@ h3 > span {
     position: absolute;
     top: 50px;
     left: 50px;
-    font-size: 30px;
+    font-size: 16px;
     font-weight: bolder;
 }
 

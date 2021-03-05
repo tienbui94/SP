@@ -25,7 +25,9 @@ const HomeScreen = () => {
     return (
         <>
             <Row className='home-screen-ui'>
-                <h2>Weather application</h2>
+                <Col md={12} xs={12} className='home-screen-header'>
+                    <h2>Weather application</h2>
+                </Col>
                 <Col md={12} xs={12} className='search-bar mx-3 my-3'>
                     <SearchBar />
                 </Col>
