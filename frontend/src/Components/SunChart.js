@@ -1,19 +1,21 @@
 import CanvasJSReact from '../assets/canvasjs.react';
 import { useState } from 'react';
+
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
+const listColors = {
+    seaLevel: 'rgb(102, 178, 255)',
+    sunLevel: 'rgb(255, 100, 0)',
+    white: 'rgb(255,255,255)'
+};
+
 const SunChart = () => {
     const [ref, setRef] = useState('');
-    const listColors = {
-        seaLevel: 'rgb(102, 178, 255)',
-        sunLevel: 'rgb(255, 100, 0)',
-        white: 'rgb(255,255,255)'
-    };
     console.log(ref, 'ref');
 
     const options = {
         animationEnabled: true,
         exportEnabled: false,
-        theme: 'light1', // "light1", "dark1", "dark2"
+        theme: 'light1',
         title: {
             text: 'Tide & Sunrise & Sunset'
         },
@@ -27,13 +29,14 @@ const SunChart = () => {
         },
         axisX: {
             title: '',
-            interval: 12
+            interval: 5
         },
         data: [
             {
                 type: 'splineArea',
-                markerType: 'none',
-                toolTipContent: 'time {x}',
+                markerType: 'circle',
+                markerSize: '0',
+                toolTipContent: 'Sun {x}',
                 color: listColors.white,
                 dataPoints: [
                     {
@@ -136,7 +139,7 @@ const SunChart = () => {
                 dataPoints: [
                     {
                         x: 1,
-                        y: 15,
+                        y: 5,
                         lineColor: listColors.seaLevel,
                         backgroundColor: listColors.seaLevel,
                         fillColor: listColors.seaLevel
@@ -150,7 +153,7 @@ const SunChart = () => {
                     },
                     {
                         x: 20,
-                        y: 16,
+                        y: 6,
                         lineColor: listColors.seaLevel,
                         backgroundColor: listColors.seaLevel,
                         fillColor: listColors.seaLevel
@@ -164,7 +167,7 @@ const SunChart = () => {
                     },
                     {
                         x: 40,
-                        y: 18,
+                        y: 15,
                         lineColor: listColors.seaLevel,
                         backgroundColor: listColors.seaLevel,
                         fillColor: listColors.seaLevel
@@ -178,28 +181,28 @@ const SunChart = () => {
                     },
                     {
                         x: 60,
-                        y: 16,
+                        y: 25,
                         lineColor: listColors.seaLevel,
                         backgroundColor: listColors.seaLevel,
                         fillColor: listColors.seaLevel
                     },
                     {
                         x: 70,
-                        y: 15,
+                        y: 10,
                         lineColor: listColors.seaLevel,
                         backgroundColor: listColors.seaLevel,
                         fillColor: listColors.seaLevel
                     },
                     {
                         x: 80,
-                        y: 14,
+                        y: 5,
                         lineColor: listColors.seaLevel,
                         backgroundColor: listColors.seaLevel,
                         fillColor: listColors.seaLevel
                     },
                     {
                         x: 90,
-                        y: 15,
+                        y: 18,
                         lineColor: listColors.seaLevel,
                         backgroundColor: listColors.seaLevel,
                         fillColor: listColors.seaLevel

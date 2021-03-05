@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../Components/Loader';
 import SunChart from '../Components/SunChart';
 import ForeCast from '../Components/ForeCast';
+import Chart from '../Components/Chart';
 const HomeScreen = () => {
     const WEATHER_APP_KEY = process.env.REACT_APP_WEATHER_API_KEY;
     const { data, loading } = useSelector((state) => state.home);
@@ -53,6 +54,7 @@ const HomeScreen = () => {
 
                         <Col md={12} xs={12} className='weather-chart mx-3 my-3'>
                             <SunChart />
+                            <Chart />
                         </Col>
                     </>
                 )}
