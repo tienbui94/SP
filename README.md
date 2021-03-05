@@ -4,6 +4,10 @@
 
 ### Hi, my name is Tien Quang Bui. I am doing this project with OpenWeather API (https://openweathermap.org/api)
 
+### Live Demo
+
+(https://weather-app-sp.netlify.app/)
+
 ### Technology:
 
 REACTJS LIBRARY / JAVASCRIPT / HTML5/ CSS3 / REDUX / REDUX TOOLKIT / CHARTJS / OTHER JS LIBRARY.
