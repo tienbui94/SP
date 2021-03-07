@@ -116,3 +116,7 @@ p {
 .get-weather-btn {
     box-shadow: 1px 1px 2px 2px lightgray;
 }
+
+.sun-rise-charts {
+    display: flex;
+}

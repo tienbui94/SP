@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollContainer from 'react-indiana-drag-scroll';
 import {
     ComposedChart,
     ResponsiveContainer,
@@ -10,112 +11,239 @@ import {
     Tooltip,
     Legend
 } from 'recharts';
+import SunIcon from './sunIcon';
+import MoonIcon from './moonIcon';
 const Chart = () => {
     const data = [
         {
             name: '0AM',
-            sun: 4000,
-            sea: 1300,
+            sea: 600,
+            night: 0,
+            sun: 0,
             amt: 2400
         },
         {
             name: '3AM',
+            sea: 3000,
+            night: 3600,
             sun: 3000,
-            sea: 2500,
             amt: 2210
         },
         {
             name: '6AM',
-            sun: 2000,
-            sea: 5000,
+            sea: 2000,
+            night: 3700,
+            sun: 4000,
             amt: 2290
         },
         {
             name: '9AM',
-            sun: 2780,
-            sea: 6000,
+            sea: 2780,
+            night: 3800,
+            sun: 5000,
             amt: 2000
         },
         {
             name: '12PM ',
-            sun: 1890,
-            sea: 7000,
+            sea: 1890,
+            night: 3900,
+            sun: 6000,
             amt: 2181
         },
         {
             name: '3PM',
-            sun: 2390,
-            sea: 8500,
+            sea: 2390,
+            night: 4000,
+            sun: 5000,
             amt: 2500
         },
         {
             name: '6PM',
-            sun: 3490,
-            sea: 7800,
+            sea: 2490,
+            night: 3900,
+            sun: 4000,
             amt: 2100
         },
         {
             name: '9PM',
-            sun: 3490,
-            sea: 6000,
+            sea: 1490,
+            night: 3800,
+            sun: 3000,
             amt: 2100
         },
         {
             name: '0AM',
-            sun: 3490,
-            sea: 4500,
+            sea: 920,
+            night: 0,
+            sun: 0,
             amt: 2100
         }
     ];
 
     const CustomizedDot = (props) => {
-        const { cx, cy, value } = props;
-        if (value > 2500) {
-            return (
-                <svg x={cx - 10} y={cy - 10} viewBox='0 0 64 64' width={22} height={20}>
-                    <path
-                        d='M62 30H47.9a15.9 15.9 0 0 0-3.2-7.8l10-10a2 2 0 0 0-2.8-2.8l-10 10a15.9 15.9 0 0 0-7.9-3.3V2a2 2 0 0 0-4 0v14.2a15.9 15.9 0 0 0-7.8 3.2l-10-10a2 2 0 1 0-2.8 2.8l10 10a15.9 15.9 0 0 0-3.2 7.8H2a2 2 0 1 0 0 4h14.2a15.9 15.9 0 0 0 3.2 7.8l-10 10a2 2 0 1 0 2.8 2.8l10-10a15.9 15.9 0 0 0 7.8 3.3V62a2 2 0 0 0 4 0V47.9a15.9 15.9 0 0 0 7.8-3.2l10 10a2 2 0 1 0 2.8-2.8l-10-10a15.9 15.9 0 0 0 3.3-7.9H62a2 2 0 1 0 0-4z'
-                        fill='#ef750f'></path>
-                </svg>
-            );
+        const { cx, cy, day } = props;
+        if (day) {
+            return <SunIcon cx={cx} cy={cy} />;
         }
 
-        return (
-            <svg x={cx - 10} y={cy - 10} viewBox='0 0 64 64' width={22} height={20}>
-                <path
-                    d='M62 30H47.9a15.9 15.9 0 0 0-3.2-7.8l10-10a2 2 0 0 0-2.8-2.8l-10 10a15.9 15.9 0 0 0-7.9-3.3V2a2 2 0 0 0-4 0v14.2a15.9 15.9 0 0 0-7.8 3.2l-10-10a2 2 0 1 0-2.8 2.8l10 10a15.9 15.9 0 0 0-3.2 7.8H2a2 2 0 1 0 0 4h14.2a15.9 15.9 0 0 0 3.2 7.8l-10 10a2 2 0 1 0 2.8 2.8l10-10a15.9 15.9 0 0 0 7.8 3.3V62a2 2 0 0 0 4 0V47.9a15.9 15.9 0 0 0 7.8-3.2l10 10a2 2 0 1 0 2.8-2.8l-10-10a15.9 15.9 0 0 0 3.3-7.9H62a2 2 0 1 0 0-4z'
-                    fill='#ef750f'></path>
-            </svg>
-        );
+        return <MoonIcon cx={cx} cy={cy} />;
+
+        // for night
     };
 
     return (
         <>
-            <div className='container text-center sun-rise-charts mt-5'>
-                <ResponsiveContainer width='100%' height={300}>
-                    <ComposedChart
-                        data={data}
-                        margin={{
-                            top: 5,
-                            right: 30,
-                            left: 20,
-                            bottom: 5
-                        }}>
-                        <CartesianGrid strokeDasharray='3 3' />
-                        <XAxis dataKey='name' />
-                        <YAxis tick={false} />
-                        <Tooltip />
-                        <Legend />
-                        <Line
-                            type='monotone'
-                            dataKey='sea'
-                            stroke='#8884d8'
-                            activeDot={<CustomizedDot />}
-                        />
-                        <Area type='monotone' dataKey='sun' stroke='#82ca9d' />
-                    </ComposedChart>
-                </ResponsiveContainer>
-            </div>
+            <ScrollContainer
+                horizontal={true}
+                vertical={false}
+                hideScrollbars={false}
+                style={{ display: 'inline-block', width: '100%', height: '50%' }}>
+                <div className='container text-center sun-rise-charts mt-5'>
+                    <ResponsiveContainer width={1000} height={300}>
+                        <ComposedChart
+                            data={data}
+                            margin={{
+                                top: 5,
+                                right: 0,
+                                left: 0,
+                                bottom: 5
+                            }}>
+                            <CartesianGrid strokeDasharray='3 3' />
+                            <XAxis dataKey='name' />
+                            <YAxis tick={false} hide={true} />
+                            <Tooltip
+                                cursor={true}
+                                contentStyle={{ fontSize: 10 }}
+                                labelStyle={{ fontSize: 10 }}
+                            />
+                            <Legend />
+                            <Line
+                                legendType='none'
+                                dot={false}
+                                type='monotone'
+                                dataKey='sun'
+                                stroke='#FF4500'
+                                strokeDasharray='3 3'
+                                activeDot={<CustomizedDot day />}
+                            />
+                            <Area
+                                type='monotone'
+                                dataKey='sea'
+                                stroke='#8884d8'
+                                legendType='none'
+                            />
+                        </ComposedChart>
+                    </ResponsiveContainer>
+                    <ResponsiveContainer width={1000} height={300}>
+                        <ComposedChart
+                            data={data}
+                            margin={{
+                                top: 5,
+                                right: 0,
+                                left: 0,
+                                bottom: 5
+                            }}>
+                            <CartesianGrid strokeDasharray='3 3' />
+                            <XAxis dataKey='name' />
+                            <YAxis tick={false} hide={true} />
+                            <Tooltip
+                                active={true}
+                                cursor={false}
+                                contentStyle={{ fontSize: 10 }}
+                                labelStyle={{ fontSize: 10 }}
+                            />
+                            <Legend />
+                            <Line
+                                legendType='none'
+                                dot={false}
+                                type='monotone'
+                                dataKey='night'
+                                stroke='#FF4500'
+                                strokeDasharray='3 3'
+                                activeDot={<CustomizedDot night />}
+                            />
+                            <Area
+                                type='monotone'
+                                dataKey='sea'
+                                stroke='#8884d8'
+                                legendType='none'
+                            />
+                        </ComposedChart>
+                    </ResponsiveContainer>
+                    <ResponsiveContainer width={1000} height={300}>
+                        <ComposedChart
+                            data={data}
+                            margin={{
+                                top: 5,
+                                right: 0,
+                                left: 0,
+                                bottom: 5
+                            }}>
+                            <CartesianGrid strokeDasharray='3 3' />
+                            <XAxis dataKey='name' />
+                            <YAxis tick={false} hide={true} />
+                            <Tooltip
+                                active={true}
+                                cursor={false}
+                                contentStyle={{ fontSize: 10 }}
+                                labelStyle={{ fontSize: 10 }}
+                            />
+                            <Legend />
+                            <Line
+                                legendType='none'
+                                dot={false}
+                                type='monotone'
+                                dataKey='sun'
+                                stroke='#FF4500'
+                                strokeDasharray='3 3'
+                                activeDot={<CustomizedDot day />}
+                            />
+                            <Area
+                                type='monotone'
+                                dataKey='sea'
+                                stroke='#8884d8'
+                                legendType='none'
+                            />
+                        </ComposedChart>
+                    </ResponsiveContainer>
+                    <ResponsiveContainer width={1000} height={300}>
+                        <ComposedChart
+                            data={data}
+                            margin={{
+                                top: 5,
+                                right: 0,
+                                left: 0,
+                                bottom: 5
+                            }}>
+                            <CartesianGrid strokeDasharray='3 3' />
+                            <XAxis dataKey='name' />
+                            <YAxis tick={false} hide={true} />
+                            <Tooltip
+                                active={true}
+                                cursor={false}
+                                contentStyle={{ fontSize: 10 }}
+                                labelStyle={{ fontSize: 10 }}
+                            />
+                            <Legend />
+                            <Line
+                                legendType='none'
+                                dot={false}
+                                type='monotone'
+                                dataKey='night'
+                                stroke='#FF4500'
+                                strokeDasharray='3 3'
+                                activeDot={<CustomizedDot night />}
+                            />
+                            <Area
+                                type='monotone'
+                                dataKey='sea'
+                                stroke='#8884d8'
+                                legendType='none'
+                            />
+                        </ComposedChart>
+                    </ResponsiveContainer>
+                </div>
+            </ScrollContainer>
         </>
     );
 };
