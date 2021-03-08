@@ -1,5 +1,4 @@
 import CanvasJSReact from '../assets/canvasjs.react';
-import { useState } from 'react';
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const listColors = {
@@ -9,9 +8,6 @@ const listColors = {
 };
 
 const SunChart = () => {
-    const [ref, setRef] = useState('');
-    console.log(ref, 'ref');
-
     const options = {
         animationEnabled: true,
         exportEnabled: false,
@@ -215,7 +211,7 @@ const SunChart = () => {
     return (
         <>
             <div className='container text-center sun-rise-charts mt-5'>
-                <CanvasJSChart options={options} onRef={(ref) => setRef(ref)} />
+                <CanvasJSChart options={options} />
             </div>
         </>
     );

@@ -3,9 +3,6 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import chai from 'chai';
 
-//import store redux
-// import store from '../Redux/store';
-
 //import function
 import mathRound from '../Utils/mathRound';
 import objectToParams from '../Utils/objectToParams';
@@ -35,11 +32,6 @@ const mockDataAPI = {
     lat: 1.2897,
     lon: 103.8501
 };
-
-// get state data from store
-// const state = store.getState();
-
-// console.log(state, 'store');
 
 //implement chai expect for unit test
 const chaiExpect = chai.expect;
@@ -144,7 +136,7 @@ describe('SearchBar Component', () => {
 
     it('test button element in searchBar component', () => {
         chaiExpect(mountWrapper.find('button').props()).to.haveOwnProperty('onClick');
-        chaiExpect(mountWrapper.find('button').props().children).to.equal('Get Weather');
+        chaiExpect(mountWrapper.find('button').props().children).to.equal('Go');
         chaiExpect(mountWrapper.find('button').props().type).to.equal('button');
     });
 

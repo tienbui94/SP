@@ -2,12 +2,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../Utils/axios';
 import objectToParams from '../Utils/objectToParams';
 
-// import axios from 'axios';
 export const fetchOpenWeatherData = createAsyncThunk(
     'data/fetchOpenWeatherData',
     async (params, thunkAPI) => {
         const { data } = await axios.get(`/weather${objectToParams(params)}`);
+
         localStorage.setItem('data', JSON.stringify(data));
+
         return data;
     }
 );
