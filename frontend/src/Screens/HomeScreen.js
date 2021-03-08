@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import SearchBar from '../Components/SearchBar';
 import WeatherCard from '../Components/WeatherCard';
 import { fetchOpenWeatherData } from '../Reducers/homeReducer';
@@ -54,8 +54,11 @@ const HomeScreen = () => {
 
                         <Col md={12} xs={12} className='weather-chart mx-3 my-3'>
                             <SunChart />
-                            <Chart />
                         </Col>
+
+                        <Container className='recharts'>
+                            <Chart />
+                        </Container>
                     </>
                 )}
             </Row>
