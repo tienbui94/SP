@@ -7,6 +7,7 @@ import chai from 'chai';
 import mathRound from '../Utils/mathRound';
 import objectToParams from '../Utils/objectToParams';
 import { fetchOpenWeatherData, fetchOWForeCast } from '../Reducers/homeReducer';
+import { MockedProvider } from '@apollo/client/testing';
 
 //import component, screen
 import WeatherCard from '../Components/WeatherCard';
@@ -15,6 +16,7 @@ import ForeCast from '../Components/ForeCast';
 import Loader from '../Components/Loader';
 import SunChart from '../Components/SunChart';
 import Celsius from '../Components/Celsius';
+import AutoSuggestSearch from '../Components/AutoSuggestSearch';
 
 //mock provider
 import MockProvider from './Utils/mockProvider';
@@ -25,6 +27,7 @@ Enzyme.configure({ adapter: new Adapter() });
 //api key from .env
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
+const MockApolloProvider = MockedProvider;
 //mock data
 const mockDataAPI = {
     appid: WEATHER_API_KEY,
@@ -78,7 +81,7 @@ describe('WeatherCard Component', () => {
             main={mockMain}
             wind={mockWind}
             dt='dt'
-            weather='mock weather'
+            weather={['example']}
             name='weather-card'
         />
     );
@@ -92,7 +95,7 @@ describe('WeatherCard Component', () => {
         chaiExpect(wrapper.props().main).to.equal(mockMain);
         chaiExpect(wrapper.props().wind).to.equal(mockWind);
         chaiExpect(wrapper.props().dt).to.equal('dt');
-        chaiExpect(wrapper.props().weather).to.equal('mock weather');
+        chaiExpect(wrapper.props().weather).to.deep.equal(['example']);
         chaiExpect(wrapper.props().name).to.equal('weather-card');
     });
 });
@@ -112,7 +115,7 @@ describe('Celsius Component', () => {
 describe('ForeCast Component', () => {
     const mountWrapper = mount(
         <MockProvider>
-            <ForeCast coord='example coord' appid='example appid' />
+            <ForeCast coord={{ foo: 'bar' }} appid='example appid' />
         </MockProvider>
     );
 
@@ -122,7 +125,7 @@ describe('ForeCast Component', () => {
     });
 
     it('check props of component', () => {
-        chaiExpect(mountWrapper.props().children.props.coord).to.equal('example coord');
+        chaiExpect(mountWrapper.props().children.props.coord).to.deep.equal({ foo: 'bar' });
         chaiExpect(mountWrapper.props().children.props.appid).to.equal('example appid');
     });
 });
@@ -165,5 +168,18 @@ describe('Loader Component', () => {
 
     it('check attributes of component', () => {
         chaiExpect(wrapper.find('.loader-spinner').hasClass('className')).to.equal(false);
+    });
+});
+
+describe('AutoSuggestSearch', () => {
+    const wrapper = mount(
+        <MockProvider>
+            <MockApolloProvider>
+                <AutoSuggestSearch />
+            </MockApolloProvider>
+        </MockProvider>
+    );
+    test('check loading state component AutoSuggestSearch', async () => {
+        chaiExpect(wrapper.find('div').props().children).to.be.equal('Loading...');
     });
 });
