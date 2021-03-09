@@ -4,7 +4,9 @@ export const GET_COUNTRY_INFO = gql`
     {
         Country {
             name
-            capital
+            flag {
+                svgFile
+            }
         }
     }
 `;

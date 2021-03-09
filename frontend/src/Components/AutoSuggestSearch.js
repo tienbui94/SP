@@ -4,6 +4,7 @@ import { GET_COUNTRY_INFO } from '../graphql/countryql';
 import AutoSuggest from 'react-autosuggest';
 import { useDispatch } from 'react-redux';
 import { fetchOpenWeatherData } from '../Reducers/homeReducer';
+import { Container, Row, Col } from 'react-bootstrap';
 const AutoSuggestSearch = () => {
     const dispatch = useDispatch();
     const WEATHER_APP_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -45,7 +46,18 @@ const AutoSuggestSearch = () => {
     const getSuggestionValue = (suggestions) => suggestions.name;
 
     const renderSuggestion = (suggestions) => {
-        return <div>{suggestions.name}</div>;
+        console.log(suggestions, '????');
+        return (
+            <Container className='select-suggest'>
+                <Col xs={12} md={12} className='flag'>
+                    <img
+                        alt='country-flag'
+                        style={{ width: 45, height: 35 }}
+                        src={suggestions?.flag?.svgFile}></img>
+                </Col>
+                {suggestions.name}
+            </Container>
+        );
     };
 
     const onChange = (event, { newValue }) => {
