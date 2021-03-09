@@ -97,7 +97,7 @@ const Chart = () => {
                 horizontal={true}
                 vertical={false}
                 hideScrollbars={false}
-                style={{ display: 'inline-block', width: '100%', height: '50%' }}>
+                style={{ display: 'inline-block', width: '100%', height: '100%' }}>
                 <div className='container text-center sun-rise-charts mt-5'>
                     <ResponsiveContainer width={1000} height={300}>
                         <ComposedChart

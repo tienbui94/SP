@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const MoonIcon = ({ cx, cy }) => {
     return (
@@ -43,6 +44,11 @@ const MoonIcon = ({ cx, cy }) => {
             </svg>
         </>
     );
+};
+
+MoonIcon.propTypes = {
+    cx: PropTypes.string,
+    cy: PropTypes.string
 };
 
 export default MoonIcon;

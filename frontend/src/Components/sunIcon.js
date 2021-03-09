@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 const SunIcon = ({ cx, cy }) => {
     return (
         <>
@@ -108,6 +108,11 @@ const SunIcon = ({ cx, cy }) => {
             );
         </>
     );
+};
+
+SunIcon.propTypes = {
+    cx: PropTypes.string,
+    cy: PropTypes.string
 };
 
 export default SunIcon;

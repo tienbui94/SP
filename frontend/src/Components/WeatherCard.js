@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap';
 import moment from 'moment';
 import celsius from './Celsius';
 import mathRound from '../Utils/mathRound';
+import PropTypes from 'prop-types';
 const WeatherCard = ({ ...props }) => {
     const { main, wind, dt, weather = [], name } = props;
     const date = moment.unix(dt).utc().format('dddd, MMMM do, YYYY');
@@ -38,6 +39,14 @@ const WeatherCard = ({ ...props }) => {
             </Card.Body>
         </Card>
     );
+};
+
+WeatherCard.propTypes = {
+    main: PropTypes.object,
+    wind: PropTypes.object,
+    dt: PropTypes.string,
+    weather: PropTypes.array,
+    name: PropTypes.string
 };
 
 export default WeatherCard;
