@@ -120,3 +120,24 @@ p {
 .sun-rise-charts {
     display: flex;
 }
+
+.react-autosuggest__suggestions-list {
+    list-style-type: none;
+    width: 400px;
+    margin: 0 auto;
+    box-shadow: 2px 2px 2px 2px lightgray;
+    max-height: 150px;
+    text-overflow: ellipsis;
+    overflow: auto;
+}
+
+.react-autosuggest__suggestions-list > li {
+    font-weight: bolder;
+    padding: 5px;
+    margin-left: -40px;
+}
+
+li:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import SearchBar from '../Components/SearchBar';
+// import SearchBar from '../Components/SearchBar';
 import WeatherCard from '../Components/WeatherCard';
 import { fetchOpenWeatherData } from '../Reducers/homeReducer';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +8,7 @@ import Loader from '../Components/Loader';
 import SunChart from '../Components/SunChart';
 import ForeCast from '../Components/ForeCast';
 import Chart from '../Components/Chart';
+import AutoSuggestSearch from '../Components/AutoSuggestSearch';
 const HomeScreen = () => {
     const WEATHER_APP_KEY = process.env.REACT_APP_WEATHER_API_KEY;
     const { data, loading } = useSelector((state) => state.home);
@@ -30,7 +31,7 @@ const HomeScreen = () => {
                     <h2>Weather application</h2>
                 </Col>
                 <Col md={12} xs={12} className='search-bar mx-3 my-3'>
-                    <SearchBar />
+                    <AutoSuggestSearch />
                 </Col>
                 {loading ? (
                     <Loader />
