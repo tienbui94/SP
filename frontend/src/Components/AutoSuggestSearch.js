@@ -28,6 +28,12 @@ const AutoSuggestSearch = () => {
               );
     };
 
+    const onSuggestionSelected = (event, { suggestionValue }) => {
+        dispatch(
+            fetchOpenWeatherData({ q: suggestionValue, units: 'metric', appid: WEATHER_APP_KEY })
+        );
+    };
+
     const onSuggestionsFetchRequested = ({ value }) => {
         return setSuggestions(getSuggestions(value));
     };
@@ -44,7 +50,6 @@ const AutoSuggestSearch = () => {
 
     const onChange = (event, { newValue }) => {
         setValue(newValue);
-        dispatch(fetchOpenWeatherData({ q: newValue, units: 'metric', appid: WEATHER_APP_KEY }));
     };
 
     const inputProps = {
@@ -66,6 +71,7 @@ const AutoSuggestSearch = () => {
                         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
                         onSuggestionsClearRequested={onSuggestionsClearRequested}
                         getSuggestionValue={getSuggestionValue}
+                        onSuggestionSelected={onSuggestionSelected}
                         renderSuggestion={renderSuggestion}
                         inputProps={inputProps}
                     />
