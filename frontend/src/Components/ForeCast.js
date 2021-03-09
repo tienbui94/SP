@@ -5,6 +5,7 @@ import { fetchOWForeCast } from '../Reducers/homeReducer';
 import moment from 'moment';
 import celsius from './Celsius';
 import mathRound from '../Utils/mathRound';
+import PropTypes from 'prop-types';
 const ForeCast = ({ coord, appid }) => {
     const dispatch = useDispatch();
     const { forecast } = useSelector((state) => state.home);
@@ -53,4 +54,10 @@ const ForeCast = ({ coord, appid }) => {
         </>
     );
 };
+
+ForeCast.propTypes = {
+    coord: PropTypes.object,
+    appid: PropTypes.string
+};
+
 export default ForeCast;
